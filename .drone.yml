@@ -1,0 +1,16 @@
+build:
+  image: node:5.0.0-slim
+  commands:
+  - echo "build commands"
+  - .shipped/build
+  - .shipped/test
+publish:
+  docker:
+    file: ./Dockerfile
+    insecure: true
+    username: $$docker_user
+    password: $$docker_key
+    registry: $$docker_registry
+    repo: $$docker_repo
+    email: $$docker_user_email
+    tag: $$COMMIT
